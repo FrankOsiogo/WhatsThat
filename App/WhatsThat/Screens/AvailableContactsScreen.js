@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList, TextInput, StyleSheet } from 'react-native';
 import { searchUsers, addUserAsContact } from '../API';
 
+
 const AvailableContactsScreen = ({ navigation }) => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');

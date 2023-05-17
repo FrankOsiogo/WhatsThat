@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 22,
+    color: 'gray',
   },
   searchBar: {
     height: 40,
@@ -72,7 +73,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   addButton: {
-    marginBottom: 15,
+    backgroundColor: '#64b5f6',
+    padding: 10,
+    borderRadius: 5,
+  },
+  addButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   contactItem: {
     paddingHorizontal: 16,

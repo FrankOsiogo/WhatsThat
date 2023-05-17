@@ -20,35 +20,56 @@ const SettingsScreen = ({ navigation }) => {
   };
 
   const handleViewProfile = () => {
-    // Logic to handle view profile
-    // For example, you can navigate to the profile screen
     navigation.navigate('ProfileScreen');
   };
 
   const handleLogout = () => {
-    // Logic to handle logout
-    // For example, you can clear the user session and navigate to the login screen
     navigation.navigate('LoginScreen');
   };
 
   const handleUploadProfilePicture = () => {
-    // Logic to handle update information
-    // For example, you can navigate to the update information screen
     navigation.navigate('UploadPictureScreen');
   };
 
   const handleViewBlockedUsers = () => {
-    // Logic to handle view blocked users
-    // Navigate to the BlockedUsersScreen and pass the blocked users as a parameter
     navigation.navigate('BlockedUsersScreen', { blockedUsers });
   };
 
   return (
     <View style={styles.container}>
-      <Button title="View My Profile" onPress={handleViewProfile} />
-      <Button title="Logout" onPress={handleLogout} />
-      <Button title="Upload A Profile Picture" onPress={handleUploadProfilePicture} />
-      <Button title="View Blocked Users" onPress={handleViewBlockedUsers} />
+      <View style={styles.buttonContainer}>
+        <Button
+          title="View My Profile"
+          onPress={handleViewProfile}
+          color="#007AFF"
+        />
+      </View>
+
+      
+
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Upload A Profile Picture"
+          onPress={handleUploadProfilePicture}
+          color="#FF9500"
+        />
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <Button
+          title="View Blocked Users"
+          onPress={handleViewBlockedUsers}
+          color="#5856D6"
+        />
+      </View>
+      
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Logout"
+          onPress={handleLogout}
+          color="#FF3B30"
+        />
+      </View>
     </View>
   );
 };
@@ -59,6 +80,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonContainer: {
+    width: 200,
+    height: 50,
+    marginBottom: 20,
+  },
 });
+
 
 export default SettingsScreen;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { getBlockedUsers, unblockUser } from '../API';
 
+
 const BlockedUsersScreen = () => {
   const [blockedUsers, setBlockedUsers] = useState([]);
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Alert, StyleSheet, Image, Text } from 'react-native';
 import { loginUser } from '../API';
-import { storeUserToken, storeUserId } from '../Utility/UserStorage'
-
+import { storeUserToken, storeUserId } from '../Utility/UserStorage';
+import LogoImage from '../Images/logo.png';
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ function LoginScreen({ navigation }) {
     try {
       const loginResponse = await loginUser(email, password);
       if (loginResponse.token) {
-        console.log(loginResponse.id)
+        console.log(loginResponse.id);
         await storeUserToken(loginResponse.token);
         await storeUserId(loginResponse.id);
         navigation.navigate('LandingScreen');
@@ -25,9 +25,11 @@ function LoginScreen({ navigation }) {
     }
   };
 
-
   return (
     <View style={styles.container}>
+      <Image source={LogoImage} style={styles.logo} />
+      <Text style={styles.logoText}>WhatsThat?</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -45,13 +47,26 @@ function LoginScreen({ navigation }) {
       <Button title="New Here? Register" onPress={() => navigation.navigate('Register')} />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     padding: 16,
+  },
+  logo: {
+    width: '100%',
+    height: 200, 
+    resizeMode: 'contain',
+  },
+  logoText: {
+    fontSize: 24,
+    marginBottom: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontFamily: 'sans-serif',
+    color: '#8cccf4',
   },
   input: {
     height: 50,

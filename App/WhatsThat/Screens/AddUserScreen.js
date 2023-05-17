@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { getContacts, addUserToChat } from '../API';
 
+
+
 const AddUserScreen = ({ route, navigation }) => {
   const { chatId } = route.params;
   const [contacts, setContacts] = useState([]);

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text, TouchableOpacity, Modal, StyleSheet, Pressable } from 'react-native';
-import { createConversation, getChats } from '../API';
+import { createConversation, getChats, getChatDetails } from '../API';
+
 
 const ChatScreen = ({ navigation }) => {
   const [chats, setChats] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedChatId, setSelectedChatId] = useState(null);
+
 
   useEffect(() => {
     const interval = setInterval(loadChats, 1000);
@@ -52,6 +54,15 @@ const ChatScreen = ({ navigation }) => {
     setModalVisible(false);
   };
 
+  const handleViewChatDetailsButtonPress = async () => {
+    try {
+      navigation.navigate('ChatDetails', { chatId: selectedChatId });
+      setModalVisible(false);
+    } catch (error) {
+      console.log('Error retrieving chat details:', error);
+    }
+  };
+
   const handleUpdateChatNameButtonPress = () => {
     navigation.navigate('UpdateChatName', { chatId: selectedChatId });
     setModalVisible(false);
@@ -76,35 +87,37 @@ const ChatScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.newConversationButton} onPress={handleNewConversation}>
-        <Text style={styles.newConversationButtonText}>Create New Conversation</Text>
+        <Text style={styles.newConversationButtonText}>Create New Conversation + </Text>
       </TouchableOpacity>
       <FlatList
         data={chats}
         keyExtractor={(item) => item.chat_id.toString()}
         renderItem={renderChatItem}
       />
-      <Modal
-        visible={modalVisible}
-        transparent={true}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Pressable style={styles.modalButton} onPress={handleAddUserButtonPress}>
-              <Text>Add User</Text>
-            </Pressable>
-            <Pressable style={styles.modalButton} onPress={handleRemoveUserButtonPress}>
-              <Text>Remove User</Text>
-            </Pressable>
-            <Pressable style={styles.modalButton} onPress={handleUpdateChatNameButtonPress}>
-              <Text>Update Chat Name</Text>
-            </Pressable>
-            <Pressable style={styles.modalButton
-} onPress={() => setModalVisible(false)}>
-<Text>Cancel</Text>
-</Pressable>
-</View>
-</View>
+     <Modal
+  visible={modalVisible}
+  transparent={true}
+  onRequestClose={() => setModalVisible(false)}
+>
+  <View style={styles.modalContainer}>
+    <View style={styles.modalContent}>
+      <Pressable style={styles.modalButton} onPress={handleAddUserButtonPress}>
+        <Text>Add User</Text>
+      </Pressable>
+      <Pressable style={styles.modalButton} onPress={handleRemoveUserButtonPress}>
+        <Text>Remove User</Text>
+      </Pressable>
+      <Pressable style={styles.modalButton} onPress={handleUpdateChatNameButtonPress}>
+        <Text>Update Chat Name</Text>
+      </Pressable>
+      <Pressable style={styles.modalButton} onPress={handleViewChatDetailsButtonPress}>
+        <Text>View Chat Details</Text>
+      </Pressable>
+      <Pressable style={styles.modalButton} onPress={() => setModalVisible(false)}>
+        <Text>Cancel</Text>
+      </Pressable>
+    </View>
+  </View>
 </Modal>
 </View>
 );
@@ -136,10 +149,10 @@ borderRadius: 10,
 modalButton: {
 paddingVertical: 10,
 borderBottomWidth: 1,
-borderBottomColor: '#ccc',
+borderBottomColor: '#349cf4',
 },
 newConversationButton: {
-backgroundColor: '#ccc',
+backgroundColor: '#2c94f8',
 padding: 16,
 marginBottom: 10,
 alignItems: 'center',
