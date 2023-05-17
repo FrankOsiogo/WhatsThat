@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { getContacts, addUserAsContact } from '../API';
 
 const ContactsScreen = ({ navigation }) => {
   const [contacts, setContacts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    fetchContacts();
-    const timer = setInterval(fetchContacts, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-  
 
   const fetchContacts = () => {
     getContacts()
@@ -23,6 +15,16 @@ const ContactsScreen = ({ navigation }) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    fetchContacts();
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchContacts();
+    }, [])
+  );
 
   const handleAddContact = () => {
     navigation.navigate('AvailableContactsScreen');
@@ -41,12 +43,6 @@ const ContactsScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchBar}
-        onChangeText={setSearchTerm}
-        value={searchTerm}
-        placeholder="Search users"
-      />
       <TouchableOpacity style={styles.addButton} onPress={handleAddContact}>
         <Text style={styles.addButtonText}>Add Contact</Text>
       </TouchableOpacity>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text, TouchableOpacity, Modal, StyleSheet, Pressable } from 'react-native';
+// import { useFocusEffect } from '@react-navigation/native';
 import { createConversation, getChats, getChatDetails } from '../API';
 
 
@@ -10,12 +11,18 @@ const ChatScreen = ({ navigation }) => {
 
 
   useEffect(() => {
-    const interval = setInterval(loadChats, 1000);
-    return () => {
-      clearInterval(interval);
-    };
+    // const interval = setInterval(loadChats, 1000);
+    // return () => {
+    //   clearInterval(interval);
+    // };
+    loadChats();
   }, []);
 
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     loadChats();
+  //   }, [])
+  // );
   const loadChats = async () => {
     try {
       const chatList = await getChats();

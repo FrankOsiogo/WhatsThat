@@ -185,6 +185,25 @@ export function register(firstName, lastName, email, password) {
           throw error;
         }
       };
+
+      export const searchAllUsers = async () => {
+        try {
+          const authToken = await getUserToken(); // Retrieve the user token
+          const response = await fetch(`http://localhost:3333/api/1.0.0/search?search_in=all`, {
+            method: 'GET',
+            headers: {
+              'X-Authorization': authToken,
+              'Content-Type': 'application/json',
+            },
+          });
+      
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.log(error);
+          throw error;
+        }
+      };
       
       export async function getBlockedUsers() {
         const authToken = await getUserToken();
