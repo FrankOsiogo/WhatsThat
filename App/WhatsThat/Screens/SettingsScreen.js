@@ -31,10 +31,10 @@ const SettingsScreen = ({ navigation }) => {
     navigation.navigate('LoginScreen');
   };
 
-  const handleUpdateInformation = () => {
+  const handleUploadProfilePicture = () => {
     // Logic to handle update information
     // For example, you can navigate to the update information screen
-    navigation.navigate('UpdateInformationScreen');
+    navigation.navigate('UploadPictureScreen');
   };
 
   const handleViewBlockedUsers = () => {
@@ -47,7 +47,7 @@ const SettingsScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Button title="View My Profile" onPress={handleViewProfile} />
       <Button title="Logout" onPress={handleLogout} />
-      <Button title="Update My Information" onPress={handleUpdateInformation} />
+      <Button title="Upload A Profile Picture" onPress={handleUploadProfilePicture} />
       <Button title="View Blocked Users" onPress={handleViewBlockedUsers} />
     </View>
   );
