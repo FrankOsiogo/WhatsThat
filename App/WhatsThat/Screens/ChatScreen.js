@@ -36,9 +36,6 @@ const ChatScreen = ({ navigation }) => {
     }
   };
 
-  const handleChatPress = (chatId) => {
-    navigation.navigate('ChatMessages', { chatId });
-  };
 
   const handleChatLongPress = (chatId) => {
     setSelectedChatId(chatId);
