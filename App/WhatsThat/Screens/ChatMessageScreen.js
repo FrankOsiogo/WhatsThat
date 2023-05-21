@@ -33,13 +33,13 @@ const ChatMessagesScreen = ({ route }) => {
   };
   
 
-  const handleEditMessage = async (messageId, updatedMessage) => {
-    try {
-      await updateMessageInChat(chatId, messageId, updatedMessage);
-    } catch (error) {
-      console.log('Error editing message:', error);
-    }
-  };
+  // const handleEditMessage = async (messageId, updatedMessage) => {
+  //   try {
+  //     await updateMessageInChat(chatId, messageId, updatedMessage);
+  //   } catch (error) {
+  //     console.log('Error editing message:', error);
+  //   }
+  // };
 
   const handleDeleteMessage = async (messageId) => {
     try {
@@ -84,7 +84,7 @@ const ChatMessagesScreen = ({ route }) => {
     const messageAlignStyle =
       item.author === 'me' ? styles.alignRight : styles.alignLeft;
   
-    const showDeleteButton = item.author === 'me'; //Only shown on the user's own messages.
+    const showDeleteButton = item.author === 'me'; // Only shown on the user's own messages.
   
     return (
       <View style={[styles.messageContainer, messageAlignStyle]}>
@@ -96,9 +96,12 @@ const ChatMessagesScreen = ({ route }) => {
             <Text style={styles.deleteButtonText}>x</Text>
           </TouchableOpacity>
         )}
-        <View style={messageContainerStyle}>
+        <TouchableOpacity
+          style={messageContainerStyle}
+          onLongPress={() => handleChatLongPress(item)}
+        >
           <Text style={messageTextStyle}>{item.text}</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   };
