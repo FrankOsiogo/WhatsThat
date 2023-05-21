@@ -169,7 +169,7 @@ export function register(firstName, lastName, email, password) {
       
       export const searchUsers = async (searchTerm, limit = 20, offset = 0) => {
         try {
-          const authToken = await getUserToken(); // Retrieve the user token
+          const authToken = await getUserToken(); 
           const response = await fetch(`http://localhost:3333/api/1.0.0/search?q=${searchTerm}&limit=${limit}&offset=${offset}`, {
             method: 'GET',
             headers: {
@@ -188,7 +188,7 @@ export function register(firstName, lastName, email, password) {
 
       export const searchAllUsers = async () => {
         try {
-          const authToken = await getUserToken(); // Retrieve the user token
+          const authToken = await getUserToken(); 
           const response = await fetch(`http://localhost:3333/api/1.0.0/search?search_in=all`, {
             method: 'GET',
             headers: {
@@ -511,7 +511,6 @@ export function register(firstName, lastName, email, password) {
         })
           .then((response) => {
             if (response.status === 200) {
-              // Handle successful addition, if needed
             } else if (response.status === 400) {
               throw new Error('Bad Request');
             } else if (response.status === 401) {
@@ -543,7 +542,6 @@ export function register(firstName, lastName, email, password) {
         })
           .then((response) => {
             if (response.status === 200) {
-              // Handle successful update, if needed
             } else if (response.status === 400) {
               throw new Error('Bad Request');
             } else if (response.status === 401) {
@@ -572,7 +570,6 @@ export function register(firstName, lastName, email, password) {
         })
           .then((response) => {
             if (response.status === 200) {
-              // Handle successful deletion, if needed
             } else if (response.status === 401) {
               throw new Error('Unauthorized');
             } else if (response.status === 403) {

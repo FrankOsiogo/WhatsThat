@@ -10,8 +10,8 @@ const ChatMessagesScreen = ({ route }) => {
   const [editingData, setEditingData] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(loadChatDetails, 1000); // Update every second
-    return () => clearInterval(interval); // Clean up the interval on unmount
+    const interval = setInterval(loadChatDetails, 1000);
+    return () => clearInterval(interval); 
   }, []);
 
   const loadChatDetails = async () => {
@@ -84,7 +84,7 @@ const ChatMessagesScreen = ({ route }) => {
     const messageAlignStyle =
       item.author === 'me' ? styles.alignRight : styles.alignLeft;
   
-    const showDeleteButton = item.author === 'me'; // Only show delete button for "me" messages
+    const showDeleteButton = item.author === 'me'; //Only shown on the user's own messages.
   
     return (
       <View style={[styles.messageContainer, messageAlignStyle]}>

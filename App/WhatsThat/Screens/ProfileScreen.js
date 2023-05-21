@@ -36,14 +36,14 @@ const ProfileScreen = () => {
       const userId = await getUserId();
       await updateUser(userId, updatedUser);
 
-      // Update the stored user ID if email was changed
+
       if (email !== user.email) {
         await storeUserId(email);
       }
 
       Alert.alert('Success', 'User details updated successfully.');
 
-      // Fetch updated user details after successful update
+
       await fetchUserDetails();
     } catch (error) {
       console.log(error);

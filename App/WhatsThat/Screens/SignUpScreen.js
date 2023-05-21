@@ -13,7 +13,7 @@ function RegisterScreen({ navigation }) {
     try {
       await register(firstName, lastName, email, password);
       Alert.alert('Registration Successful', 'You have been registered successfully.');
-      navigation.navigate('LoginScreen'); // Navigate to the login screen
+      navigation.navigate('LoginScreen'); 
     } catch (error) {
       console.error('Error:', error);
       Alert.alert('Registration Failed', 'Failed to register. Please try again.');

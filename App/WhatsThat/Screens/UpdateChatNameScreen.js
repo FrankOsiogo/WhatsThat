@@ -10,7 +10,7 @@ const UpdateChatNameScreen = ({ route, navigation }) => {
     try {
       const chatData = { name: newChatName };
       await updateChat(chatId, chatData);
-      navigation.goBack(); // Navigate back to the ChatScreen after updating the chat name
+      navigation.goBack();
     } catch (error) {
       console.log('Error updating chat name:', error);
     }

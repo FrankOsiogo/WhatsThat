@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons'; // Import icons from the 'expo/vector-icons' package
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ContactsScreen from './ContactsScreen';
 import SettingsScreen from './SettingsScreen';
 import ChatScreen from './ChatScreen';
